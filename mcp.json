@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "quora": {
+      "command": "uvx",
+      "args": [
+        "quora-api-mcp",
+        "mcp"
+      ]
+    }
+  }
+}
