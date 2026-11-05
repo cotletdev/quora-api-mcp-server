@@ -1,8 +1,36 @@
-# Quora API and MCP server, self-hosted
+# Quora API and MCP server: connect Quora to ChatGPT and Claude
 
 <!-- mcp-name: dev.cotlet/quora -->
 
-A **Quora API** and a **Quora MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 13 Quora tools we run in production at [Cotlet](https://cotlet.dev/integrations/quora-api-mcp-server): search questions, read answers, post answers, ask questions, answer requests, notifications, and Spaces with their stats, posts and submissions.
+**Yes, ChatGPT, Claude and other AI agents can work in your Quora account.** That includes Cursor, Codex, OpenClaw and any MCP client, plus automations in n8n, Make and Zapier. Ask in plain words, and the AI finds questions in your field, drafts answers in your voice, posts after your OK and runs your Spaces. It shows you what it will do first and sends nothing to other people until you say so.
+
+This repo is the missing piece: 13 Quora tools for AI assistants and scripts.
+
+## What you can ask
+
+> *Find questions about home espresso with fewer than five answers and draft an answer for the best three.*
+>
+> *What did people ask me to answer this week? Sort them by how many answers they already have.*
+>
+> *Show the pending submissions in my Space and approve the ones on topic.*
+>
+> *Compare views and new followers of my Spaces for the last 7 days.*
+
+## Two ways to get it
+
+| | [Ready to use, at Cotlet](https://cotlet.dev/integrations/quora-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=two-ways) | Run it yourself, this repo |
+|---|---|---|
+| For | creators, marketers and Spaces owners | developers |
+| Setup | sign in to Quora once, about 5 minutes, nothing to install | Python and a terminal |
+| Works in | ChatGPT and Claude apps, on your phone too, Cursor, Codex, OpenClaw, any MCP client, n8n, Make, Zapier, REST API | Claude Code, Claude Desktop, Cursor, Codex on your computer |
+| Runs | 24/7, your computer can be off | while your computer is on |
+| Price | 7 days free, no card | free |
+
+**[Start free at cotlet.dev →](https://cotlet.dev/signup?app=quora&utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=top-button)**
+
+## Run it yourself
+
+A **Quora API** and a **Quora MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 13 Quora tools we run in production at [Cotlet](https://cotlet.dev/integrations/quora-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=intro): search questions, read answers, post answers, ask questions, answer requests, notifications, and Spaces with their stats, posts and submissions.
 
 Quora has no public API and no official MCP server. This repo gives you both:
 
@@ -10,11 +38,11 @@ Quora has no public API and no official MCP server. This repo gives you both:
 - **REST API** on `http://127.0.0.1:8787/api/v1/quora`, with OpenAPI docs at `/docs`. [Setup](#rest-api)
 - **Python**: `call("search_questions", query="espresso grinder")`, plus 11 ready scripts in [`examples/`](https://github.com/cotletdev/quora-api-mcp-server/blob/main/examples/).
 
-It is for technical people who want to run it themselves, **for noncommercial use only** ([license](#license)). If you want it running 24/7 on a server, kept working when Quora changes its site, for a team or a business, use the [hosted version at cotlet.dev](https://cotlet.dev/integrations/quora-api-mcp-server).
+Free for your own use, your own business included ([license](#license)).
 
 [![Quora MCP server](https://img.shields.io/badge/Quora%20MCP-13%20tools-b92b27)](#all-13-tools)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-141318)](#requirements)
-[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial-141318)](https://github.com/cotletdev/quora-api-mcp-server/blob/main/LICENSE)
+[![License: Elastic 2.0](https://img.shields.io/badge/license-Elastic%202.0-141318)](https://github.com/cotletdev/quora-api-mcp-server/blob/main/LICENSE)
 
 ```bash
 uv tool install quora-api-mcp                  # or: pip install quora-api-mcp
@@ -25,6 +53,7 @@ claude mcp add quora -- uvx quora-api-mcp mcp
 
 ## Contents
 
+- [Questions from Quora users](#questions-from-quora-users)
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Install](#install)
@@ -39,6 +68,44 @@ claude mcp add quora -- uvx quora-api-mcp mcp
 - [Self-hosted or hosted](#self-hosted-or-hosted)
 - [FAQ](#faq)
 - [License](#license)
+
+## Questions from Quora users
+
+**Does Quora have an API?**
+No. Quora has no public API and no developer docs. Its help center covers only the web and mobile apps. This repo and [Cotlet](https://cotlet.dev/integrations/quora-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=faq-api) give you 13 Quora tools as a REST API and an MCP server.
+
+**Can I get a Quora API key?**
+Not from Quora for your own account. With Cotlet you get your own API key that works with your Quora account, for scripts, n8n, Make, Zapier or any HTTP client. This repo needs no key: it runs on your computer, on your own Quora session.
+
+**Is there an official ChatGPT integration for Quora?**
+No. Quora has no official ChatGPT or Claude connector. Cotlet is an unofficial one that works today, in the ChatGPT and Claude apps and in any AI agent that takes an MCP server.
+
+**How do I connect Quora to ChatGPT?**
+Sign up at [cotlet.dev](https://cotlet.dev/signup?app=quora&utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=faq-chatgpt), sign in to Quora once in your Cloud Browser there, and add Cotlet to ChatGPT, following the steps in your account. Then ask ChatGPT about your Quora like you would ask an assistant. ChatGPT needs a server on the internet, so this repo alone, running on your computer, does not connect to ChatGPT.
+
+**Can ChatGPT answer Quora questions for me?**
+Yes, with Cotlet. It finds fresh questions in your topics, drafts answers in your voice and posts them only after your OK.
+
+**Can AI help me run my Quora Spaces?**
+Yes, with Cotlet: it reads Space stats, reviews submissions and posts to your Spaces after your OK.
+
+**Can I automate Quora with Zapier, Make or n8n?**
+Quora has no Zapier or Make app. With Cotlet, n8n, Make and Zapier can find questions, list your answers and read Space stats.
+
+**Can I use it from my phone?**
+Yes, with Cotlet: once it is set up, the ChatGPT and Claude apps on your phone can use Quora for you.
+
+**Do I need to be technical?**
+For Cotlet, no: you sign in to Quora and add Cotlet to ChatGPT or Claude, with step-by-step instructions in your account. This repo is for people who are fine with Python and a terminal.
+
+**Is my Quora account safe?**
+Yes. Neither Cotlet nor this repo sees or stores your Quora password. You sign in yourself, the way you always do, and the AI works on that signed-in session. Anything that reaches other people asks for your OK first: in Cotlet by default, here through your MCP client.
+
+**Is it free?**
+This repo is free, also in your own business. Cotlet is free for 7 days with no card, then one-time credit packs from $29, no subscription. [Pricing](https://cotlet.dev/pricing?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=faq-price).
+
+**I manage Quora for several accounts or clients. Does that work?**
+Yes, with Cotlet. Each Quora login gets its own connection. Write to [contact@cotlet.dev](mailto:contact@cotlet.dev) and tell us how many accounts you manage.
 
 ## How it works
 
@@ -350,7 +417,7 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 
 ## Self-hosted or hosted
 
-| | This repo | [Cotlet, hosted](https://cotlet.dev/integrations/quora-api-mcp-server) |
+| | This repo | [Cotlet, hosted](https://cotlet.dev/integrations/quora-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=compare) |
 |---|---|---|
 | Tools | the same 13 | the same 13 |
 | Runs | on your computer, while it is on | in the cloud, 24/7 |
@@ -359,15 +426,12 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 | When Quora changes its site | `git pull` once we have fixed it | fixed for you, every tool tested daily |
 | Approvals | your MCP client asks per call | answers, questions, Space posts and reviews wait for your OK, switchable per tool |
 | Works with | MCP clients on your machine, local scripts | Claude.ai and ChatGPT connectors, n8n, any HTTP client |
-| Who may use it | you, for noncommercial use | teams, businesses, agencies |
+| Who may use it | you and your own business | you, teams, businesses, agencies |
 | Price | free | free 7-day trial with 2,000 credits, no card; then one-time packs from $29 for 5,000 credits |
 
 On the hosted version a successful call uses 10 credits, failed calls are free, and the Cloud Browser uses 50 credits a day while it has an app enabled for agents. [Full pricing](https://cotlet.dev/pricing).
 
 ## FAQ
-
-**Does Quora have an official API?**
-No. Quora has no public API and no developer docs. Its help center covers only the web and mobile apps. Details: [cotlet.dev/integrations/quora-api-mcp-server](https://cotlet.dev/integrations/quora-api-mcp-server).
 
 **Is there a Quora MCP server for Claude, ChatGPT or Cursor?**
 Yes, this one runs on your machine: `quora-mcp mcp` for Claude Code, Claude Desktop, Cursor and Codex. ChatGPT and Claude.ai connectors need a public HTTPS URL, which the [hosted Quora MCP server](https://cotlet.dev/integrations/quora-api-mcp-server) gives you.
@@ -394,20 +458,20 @@ Quora updates Space statistics once a day, after 5 pm Pacific time. A Space made
 Quora bans fast posters and answer bots. Requests carry Chrome's fingerprint and go out one at a time, but nobody can promise a platform never acts. Keep the volume to what you would write by hand.
 
 **Can I use it at work or for my clients?**
-No, the license allows noncommercial use only. For a team, a company or client work, use [Cotlet](https://cotlet.dev) or write to [contact@cotlet.dev](mailto:contact@cotlet.dev).
+At work and in your own business, yes, free. You may not offer it to others as a hosted or managed service. For client work, use [Cotlet](https://cotlet.dev?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=faq-clients) or write to [contact@cotlet.dev](mailto:contact@cotlet.dev).
 
 **Is it open source?**
-The source is public, the license is not an open source license: noncommercial use only, no business use.
+The source is public under the Elastic License 2.0: free to use and change, also in your own business, but not to resell as a hosted service.
 
 **A tool broke or I need another one.**
 [Open an issue](https://github.com/cotletdev/quora-api-mcp-server/issues) with the tool name and the error message.
 
 ## License
 
-[PolyForm Noncommercial License 1.0.0](https://github.com/cotletdev/quora-api-mcp-server/blob/main/LICENSE). In short:
+[Elastic License 2.0](https://github.com/cotletdev/quora-api-mcp-server/blob/main/LICENSE). In short:
 
-- **Allowed:** noncommercial use: you, for your own personal purposes with your own Quora account, or a charity, school, public research or government body. Changing the code, and sharing it under the same license.
-- **Not allowed:** any commercial use, your own business included; client work; selling or offering it, or a service built on it.
+- **Allowed:** using it for yourself and in your own business, free. Changing the code and sharing it under the same license.
+- **Not allowed:** offering it to others as a hosted or managed service, removing the license notices, getting around its limits.
 
 ---
 
@@ -420,4 +484,4 @@ The source is public, the license is not an open source license: noncommercial u
   </a>
 </p>
 
-Maintained by [Cotlet](https://cotlet.dev) ([@cotletdev](https://x.com/cotletdev)). Quora is a trademark of its owner. This project is unofficial and not affiliated with, endorsed or sponsored by Quora.
+Maintained by [Cotlet](https://cotlet.dev?utm_source=github&utm_medium=readme&utm_campaign=quora&utm_content=footer) ([@cotletdev](https://x.com/cotletdev)). Quora is a trademark of its owner. This project is unofficial and not affiliated with, endorsed or sponsored by Quora.
